@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:text="Student Name "
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/bus"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:layout_toRightOf="@+id/busnumberstudent"
+        android:id="@+id/T_StudentName"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bus"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Student Address"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/busnumber"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bus"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:layout_toRightOf="@+id/busnumberstudent"
+        android:id="@+id/T_StudentAddress"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/busnumber"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text=" Parent Phone"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/buscapcity"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/busnumber"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:layout_toRightOf="@+id/busnumberstudent"
+        android:id="@+id/T_ParentPhone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buscapcity"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text=" Parent Address"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/busnumberstudent"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buscapcity"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="#8b8b8b"
+        android:textStyle="bold"
+        android:textSize="@dimen/_13sdp"
+        android:layout_toRightOf="@+id/busnumberstudent"
+        android:id="@+id/T_ParentAddress"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <dependency>
+        <groupId>com.pusher</groupId>
+        <artifactId>pusher-java-client</artifactId>
+        <version>1.6.0</version>
+    </dependency>
+
+</PreferenceScreen>

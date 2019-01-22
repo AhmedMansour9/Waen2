@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "108291614678",
+    "firebase_url": "https://wean-f01f2.firebaseio.com",
+    "project_id": "wean-f01f2",
+    "storage_bucket": "wean-f01f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108291614678:android:92751ce325f69da4",
+        "android_client_info": {
+          "package_name": "com.waen.waen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108291614678-73hd0nhrbauu82f28s82qt4kcorhb1ev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.waen.waen",
+            "certificate_hash": "2aaee980c44d411fbba02b5493cc1e7b3a8b1c57"
+          }
+        },
+        {
+          "client_id": "108291614678-j9uhogj33ihisqhelt1gnki1p97qh9sf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgK1ckCdNcIkTu5Ewkrbe9KZ9wIkA2CSI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108291614678-j9uhogj33ihisqhelt1gnki1p97qh9sf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

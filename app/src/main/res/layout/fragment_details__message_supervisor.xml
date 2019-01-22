@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:id="@+id/Frame_Chat"
+    tools:context="com.waen.waen.Admin.Fragments.Details_Message_admin">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_details_chat"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_details_chat"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+        <EditText
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+           android:background="@drawable/bcmessage"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/_10sdp"
+            android:id="@+id/E_Message"
+            android:paddingRight="@dimen/_10sdp"
+            android:textColor="#000">
+
+        </EditText>
+
+     <Button
+         android:layout_width="@dimen/_40sdp"
+         android:layout_height="@dimen/_40sdp"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentBottom="true"
+         android:layout_marginRight="@dimen/_10sdp"
+         android:background="@drawable/send"
+         android:layout_marginBottom="@dimen/_10sdp"
+         android:textSize="@dimen/_16sdp"
+         android:textAllCaps="false"
+         android:id="@+id/Btn_SendMessage"
+         />
+
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Waeen</string>
+    <string name="email">Email : </string>
+    <string name="password">Password : </string>
+    <string name="login">Login </string>
+    <string name="home">Home</string>
+    <string name="supervisoranddriver">Supervisors &amp; Drivers</string>
+    <string name="logout">Sign Out</string>
+    <string name="absence">Absence</string>
+
+    <string name="bus">Bus</string>
+    <string name="request">Requestes</string>
+    <string name="feedback">Feed Back</string>
+    <string name="notification">Notification</string>
+    <string name="internet">No Internet Connection </string>
+    <string name="send">Send</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="reject">Reject</string>
+    <string name="action">Take Action</string>
+    <string name="backup">Back</string>
+    <string name="retur">Return</string>
+    <string name="insertemail">Insert Your Email</string>
+    <string name="insertpassword">Insert Your Password</string>
+    <string name="backuptrip">Back up</string>
+    <string name="returntrip">Return</string>
+
+    <string name="invalidemail">Invalid Email Or password</string>
+    <string name="busnumber">Bus Number</string>
+    <string name="supervisorname">SuperVisor</string>
+    <string name="busname">Bus Name</string>
+    <string name="speed">Speed</string>
+
+</resources>
