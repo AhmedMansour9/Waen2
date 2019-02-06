@@ -13,11 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.waen.waen.Admin.Fragments.Absence_Admin;
-import com.waen.waen.Admin.Fragments.Home_Admin_admin;
+import com.waen.waen.Admin.Fragments.Home_Admin;
 import com.waen.waen.Admin.Fragments.SuperVisors_Admin;
 import com.waen.waen.Main.Login;
+import com.waen.waen.Parent.Fragments.Absence_Parent;
 import com.waen.waen.R;
+import com.waen.waen.SharedPrefManager;
 
 public class Navigation_Admin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,7 +51,7 @@ public class Navigation_Admin extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(fr instanceof Home_Admin_admin){
+            if(fr instanceof Home_Admin){
                 super.onBackPressed();
 
             }
@@ -76,7 +77,7 @@ public class Navigation_Admin extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.home:
                 mCurrentSelectedPosition = 0;
-                fr = new Home_Admin_admin();
+                fr = new Home_Admin();
                 break;
             case R.id.supervisor:
                 mCurrentSelectedPosition = 1;
@@ -84,17 +85,22 @@ public class Navigation_Admin extends AppCompatActivity
                 break;
             case R.id.absence:
                 mCurrentSelectedPosition = 2;
-                fr = new Absence_Admin();
+                fr = new Absence_Parent();
                 break;
             case R.id.logout:
-                mCurrentSelectedPosition = 3;
+                mCurrentSelectedPosition = 2;
 
 //                shareRole.putString("Role",null);
 //                shareRole.commit();
 //                Shared.putString("logggin",null);
 //                Shared.apply();
-                startActivity(new Intent(Navigation_Admin.this,Login.class));
-                finish();
+
+                SharedPrefManager.getInstance(this).saveUserToken(null);
+                SharedPrefManager.getInstance(this).saveUserTokenAdmin(null);
+                SharedPrefManager.getInstance(this).saveRole(null);
+                SharedPrefManager.getInstance(this).saveId(null);
+                startActivity(new Intent(this,Login.class));
+               finish();
                 break;
 
             default:
@@ -120,7 +126,7 @@ public class Navigation_Admin extends AppCompatActivity
 
     private void BackToHome()
     {
-        fr = new Home_Admin_admin();
+        fr = new Home_Admin();
         if(fr !=null)
         {
             navigationView.getMenu().getItem(0).setChecked(true);

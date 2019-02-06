@@ -1,4 +1,4 @@
-package com.waen.waen.Admin.Adapter;
+package com.waen.waen.Main.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.waen.waen.R;
+import com.waen.waen.SuperVisor.Model.Inbox_details;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ahmed on 06/12/2018.
@@ -15,26 +19,26 @@ import com.waen.waen.R;
 
 public class LastMessage_Adapter_admin extends RecyclerView.Adapter<LastMessage_Adapter_admin.MyViewHolder>{
 
-    //    public static List<Filter_Places> filteredList=new ArrayList<>();
+        public static List<Inbox_details> filteredList=new ArrayList<>();
     View itemView;
     Context con;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView T_Username,T_LastMessage,T_Time;
+        private TextView T_Title,T_LastMessage,T_Time;
         public MyViewHolder(View view) {
             super(view);
             T_Time=view.findViewById(R.id.T_Time);
             T_LastMessage=view.findViewById(R.id.T_LastMessage);
-            T_Username=view.findViewById(R.id.T_Username);
+            T_Title=view.findViewById(R.id.T_Title);
 
         }
     }
 
-    //    public Buses_Adapter_supervisor(List<Filter_Places> list, Context context){
-//        this.filteredList=list;
-//        this.con=context;
-//    }
+        public LastMessage_Adapter_admin(List<Inbox_details> list, Context context){
+        this.filteredList=list;
+        this.con=context;
+    }
 //    public void setClickListener(Details_Service itemClickListener) {
 //        this.details_service = itemClickListener;
 //    }
@@ -46,8 +50,9 @@ public class LastMessage_Adapter_admin extends RecyclerView.Adapter<LastMessage_
     }
     @Override
     public void onBindViewHolder(final LastMessage_Adapter_admin.MyViewHolder holder, final int position) {
-//        holder.VendorName.setText(filteredList.get(position).getVendorName());
-//        double a=filteredList.get(position).getDistance()/1000;
+        holder.T_Time.setText(filteredList.get(position).getDate());
+        holder.T_LastMessage.setText(filteredList.get(position).getBody());
+        holder.T_Title.setText(filteredList.get(position).getTitle());
 
 
 
@@ -57,8 +62,7 @@ public class LastMessage_Adapter_admin extends RecyclerView.Adapter<LastMessage_
 
     @Override
     public int getItemCount() {
-        return 0;
-//        return filteredList.size()  ;
+        return filteredList.size()  ;
     }
     @Override
     public long getItemId(int position) {

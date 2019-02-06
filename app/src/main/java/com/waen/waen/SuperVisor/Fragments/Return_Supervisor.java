@@ -2,10 +2,12 @@ package com.waen.waen.SuperVisor.Fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.waen.waen.Admin.Adapter.Requests_Adapter_Admin;
 import com.waen.waen.Admin.NetworikConntection;
@@ -144,5 +147,26 @@ public class Return_Supervisor extends Fragment implements Student_Id,StudenInfo
         progressdialog.setCancelable(false);
 
         StudenInFo_Presnter.GetStudentinfo(User_Token, "return",id);
+        String point= SharedPrefManager.getInstance(getActivity()).getStartTrip();
+        if(point!=null) {
+            progressdialog.setMessage("Please Wait While Sending Notification....");
+            progressdialog.show();
+            progressdialog.setCancelable(false);
+
+            StudenInFo_Presnter.GetStudentinfo(User_Token, "return", id);
+        }else {
+            ShowDialog();
+        }
+    }
+    public void ShowDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                //set icon
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                //set title
+                .setTitle("Warning")
+                //set message
+                .setMessage("Please Start a Trip First ..").show();
+
+
     }
 }

@@ -10,10 +10,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.onesignal.OneSignal;
 import com.waen.waen.Admin.Activities.Navigation_Admin;
 import com.waen.waen.Admin.Fragments.Maps_Bus_admin;
 import com.waen.waen.Main.Login;
 import com.waen.waen.SuperVisor.Home_Supervisor;
+
+import org.json.JSONObject;
 
 
 public class Splash extends AppCompatActivity {
@@ -27,13 +30,10 @@ public class Splash extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_admin);
 
-        com.onesignal.OneSignal.startInit(this)
-                .inFocusDisplaying(com.onesignal.OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
+//        com.onesignal.OneSignal.postNotification(new JSONObject("{'contents': {'en':'Test Message'}, " +
+//                "'include_player_ids': ['" + userId + "']}"), null);
 
         StartAnimations();
-
     }
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
@@ -71,6 +71,7 @@ public class Splash extends AppCompatActivity {
             }
         };
         splashTread.start();
-
     }
+
+
 }

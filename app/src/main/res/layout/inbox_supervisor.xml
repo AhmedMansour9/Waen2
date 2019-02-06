@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:text="INBOX"
+        android:textSize="@dimen/_13sdp"
+        android:id="@+id/inbox"
+        android:textColor="#000"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_5sdp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_toRightOf="@+id/inbox"
+        android:layout_marginLeft="@dimen/_2sdp"
+        android:id="@+id/cartt"
+        />
+
+
+
+</RelativeLayout>

@@ -29,10 +29,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Home_Admin_admin extends Fragment {
+public class Home_Admin extends Fragment {
 
 
-    public Home_Admin_admin() {
+    public Home_Admin() {
         // Required empty public constructor
     }
     private TabLayout tabLayout;
@@ -52,7 +52,6 @@ public class Home_Admin_admin extends Fragment {
         tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         RefreshTabs();
         setupTabIcons();
-
 
         return view;
     }

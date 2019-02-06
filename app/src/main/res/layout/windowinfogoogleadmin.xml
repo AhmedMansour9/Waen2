@@ -27,7 +27,7 @@
         android:textStyle="bold"
         android:textSize="@dimen/_13sdp"
         android:layout_toRightOf="@+id/busnumber"
-        android:id="@+id/T_StudentName"
+        android:id="@+id/T_bussName"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
         android:textStyle="bold"
         android:textSize="@dimen/_13sdp"
         android:layout_toRightOf="@+id/busnumber"
-        android:id="@+id/T_BusNumber"
+        android:id="@+id/T_bussNumber"
         />
 
     <TextView
@@ -103,7 +103,7 @@
         android:textStyle="bold"
         android:textSize="@dimen/_13sdp"
         android:layout_toRightOf="@+id/busnumber"
-        android:id="@+id/T_Speed"
+        android:id="@+id/T_speeed"
         />
 
 </RelativeLayout>

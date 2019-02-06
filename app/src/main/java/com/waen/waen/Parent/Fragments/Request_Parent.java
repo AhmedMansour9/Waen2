@@ -1,4 +1,4 @@
-package com.waen.waen.Admin.Fragments;
+package com.waen.waen.Parent.Fragments;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.waen.waen.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Absence_Admin extends Fragment {
+public class Request_Parent extends Fragment {
 
 
-    public Absence_Admin() {
+    public Request_Parent() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class Absence_Admin extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_absence__admin, container, false);
+        return inflater.inflate(R.layout.fragment_request__parent, container, false);
     }
 
 }

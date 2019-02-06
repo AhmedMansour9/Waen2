@@ -2,35 +2,24 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="#fff"
-    android:paddingBottom="@dimen/_10sdp"
-    android:layout_height="@dimen/_80sdp">
+    android:background="@drawable/bcbusdetails"
+    android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/person_image"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_60sdp"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:src="@drawable/userphoto"
-        android:visibility="visible"
-        />
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_toRightOf="@+id/person_image"
       android:layout_marginTop="@dimen/_15sdp"
       android:layout_marginLeft="@dimen/_10sdp"
-      android:id="@+id/T_Username"
+      android:id="@+id/T_Title"
       android:textColor="#000"
       />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/person_image"
-        android:layout_below="@+id/T_Username"
+        android:layout_below="@+id/T_Title"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:id="@+id/T_LastMessage"
         android:maxLines="1"
         android:textColor="#000"

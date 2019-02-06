@@ -56,10 +56,13 @@ public class LoginPresenter {
                         loginIn.setRole(response.body().getData().getRole());
                         loginIn.setUsertokenadmin(response.body().getData().getUserTokenAdmin());
                         loginvieew.OpenRole(loginIn);
-                    } else if(response.body().getData().getMessage().equals("Login filed please try again")){
+                    } else if(response.body().getData().getMessage().equals("login filed try again")){
                         loginvieew.Invalidemail("");
                     }
-            }
+            }else {
+                    loginvieew.showError("");
+
+                }
             }
 
             @Override

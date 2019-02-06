@@ -2,6 +2,7 @@ package com.waen.waen.SuperVisor.Fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.waen.waen.Admin.Activities.Navigation_Admin;
+import com.waen.waen.Main.Login;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
 
@@ -26,6 +30,7 @@ public class Choose_BackUp_Return extends Fragment {
     Button backup,returnn;
     View view;
     TextView T_BusName,T_BusNumber,T_Capacity,T_BusNumberStuident,T_DriverName;
+    ImageView logoout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class Choose_BackUp_Return extends Fragment {
          init();
          StartBackUp();
          StartReturn();
-
+         Log_out();
         return view;
     }
     public void CheckStartOrNot(){
@@ -48,6 +53,19 @@ public class Choose_BackUp_Return extends Fragment {
 
         }
     }
+    public void Log_out(){
+        logoout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPrefManager.getInstance(getActivity()).saveUserToken(null);
+                SharedPrefManager.getInstance(getActivity()).saveRole(null);
+                SharedPrefManager.getInstance(getActivity()).saveId(null);
+                startActivity(new Intent(getActivity(),Login.class));
+                getActivity().finish();
+
+            }
+        });
+    }
     public void init(){
         backup=view.findViewById(R.id.backup);
         returnn=view.findViewById(R.id.returnn);
@@ -56,6 +74,7 @@ public class Choose_BackUp_Return extends Fragment {
         T_Capacity=view.findViewById(R.id.T_Capacity);
         T_BusNumberStuident=view.findViewById(R.id.T_BusNumberStuident);
         T_DriverName=view.findViewById(R.id.T_DriverName);
+        logoout=view.findViewById(R.id.logoout);
         String Bus_Name=SharedPrefManager.getInstance(getActivity()).getBuseName();
        String BusNumber =SharedPrefManager.getInstance(getActivity()).getBusNumber();
        String Capacity =SharedPrefManager.getInstance(getActivity()).getBuscapcity();
@@ -77,7 +96,6 @@ public class Choose_BackUp_Return extends Fragment {
                 fragmen.setArguments(args);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.Frame_BachUpAndReturn, fragmen )
-                        .addToBackStack(null)
                         .commit();
 
             }
@@ -93,7 +111,6 @@ public class Choose_BackUp_Return extends Fragment {
                 fragmen.setArguments(args);
                 getFragmentManager().beginTransaction()
                         .replace(R.id.Frame_BachUpAndReturn, fragmen )
-                        .addToBackStack(null)
                         .commit();
 
             }

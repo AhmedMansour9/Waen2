@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
 
 public class SharedPrefManager {
     private static SharedPrefManager mInstance;
-    private static Context mCtx;
+        private static Context mCtx;
     private static final String SHARED_PREF_NAME = "LoginUser";
 
     private SharedPrefManager(Context context) {

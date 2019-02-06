@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#edebeb"
-    tools:context="com.waen.waen.Admin.Fragments.Home_Admin_admin">
+    tools:context="com.waen.waen.Admin.Fragments.Home_Admin">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

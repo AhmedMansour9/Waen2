@@ -7,7 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.waen.waen.Admin.Model.Notifications;
 import com.waen.waen.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ahmed on 09/12/2018.
@@ -15,39 +19,40 @@ import com.waen.waen.R;
 
 public class Notification_Adapter_supervisor extends RecyclerView.Adapter<Notification_Adapter_supervisor.MyViewHolder>{
 
-    //    public static List<Filter_Places> filteredList=new ArrayList<>();
+    public static List<Notifications> filteredList=new ArrayList<>();
     View itemView;
     Context con;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView T_Notificationtime,T_NotificationTitle,T_Time;
+        private TextView T_Notificationtime,T_NotificationTitle,T_NotificationMessage;
         public MyViewHolder(View view) {
             super(view);
-            T_Time=view.findViewById(R.id.T_Time);
+            T_NotificationMessage=view.findViewById(R.id.T_NotificationMessage);
             T_NotificationTitle=view.findViewById(R.id.T_NotificationTitle);
             T_Notificationtime=view.findViewById(R.id.T_Notificationtime);
 
         }
     }
 
-    //    public Buses_Adapter_supervisor(List<Filter_Places> list, Context context){
-//        this.filteredList=list;
-//        this.con=context;
-//    }
+        public Notification_Adapter_supervisor(List<Notifications> list, Context context){
+        this.filteredList=list;
+        this.con=context;
+    }
 //    public void setClickListener(Details_Service itemClickListener) {
 //        this.details_service = itemClickListener;
 //    }
     @Override
     public Notification_Adapter_supervisor.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_backupandreturn_supervisor, parent, false);
+                .inflate(R.layout.row_notification_admin, parent, false);
         return new Notification_Adapter_supervisor.MyViewHolder(itemView);
     }
     @Override
     public void onBindViewHolder(final Notification_Adapter_supervisor.MyViewHolder holder, final int position) {
-//        holder.VendorName.setText(filteredList.get(position).getVendorName());
-//        double a=filteredList.get(position).getDistance()/1000;
+        holder.T_Notificationtime.setText(filteredList.get(position).getData());
+        holder.T_NotificationMessage.setText(filteredList.get(position).getMessage());
+        holder.T_NotificationTitle.setText(filteredList.get(position).getTitle());
 
 
 
@@ -57,8 +62,7 @@ public class Notification_Adapter_supervisor extends RecyclerView.Adapter<Notifi
 
     @Override
     public int getItemCount() {
-        return 0;
-//        return filteredList.size()  ;
+        return filteredList.size()  ;
     }
     @Override
     public long getItemId(int position) {

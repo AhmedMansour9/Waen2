@@ -20,7 +20,6 @@ public class OneSignal extends Application {
                 .init();
 
 
-//
         String email = "example@domain.com";
         String emailAuthHash = "123456789"; // Email auth hash generated from your server
         com.onesignal.OneSignal.setEmail(email, emailAuthHash, new com.onesignal.OneSignal.EmailUpdateHandler() {

@@ -113,6 +113,7 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
     Marker m;
     Boolean movie=false;
     String UserTokenAdmin;
+    DatabaseReference reference;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -126,6 +127,7 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
         getStudentRouteInFo_presenter = new GetStudentRouteInFo_Presenter(getActivity(), this);
         getStudentRouteInFo_presenter.GetRoutes(User_Token, Statues);
         startTrip_presnter=new StartTrip_Presnter(getActivity(),this);
+
        StartTrip();
        EndTrip();
 
@@ -197,6 +199,7 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
                  if(latitude!=0) {
                      progressdialog.setMessage("Please Wait Ending Trip....");
                      progressdialog.show();
+                     String busid=SharedPrefManager.getInstance(getActivity()).getBusNumber();
                      startTrip_presnter.EndTrip(User_Token, UserTokenAdmin, "End", String.valueOf(latitude)
                              , String.valueOf(longitude), Statues);
                  }else {
@@ -212,6 +215,8 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
         String backup = SharedPrefManager.getInstance(getContext()).getbackup();
         String Return = SharedPrefManager.getInstance(getContext()).getReturn();
         UserTokenAdmin=SharedPrefManager.getInstance(getContext()).getUserTokenAdmin();
+         reference = FirebaseDatabase.getInstance().getReference(UserTokenAdmin).child(User_Token);
+
         start=view.findViewById(R.id.start);
         end=view.findViewById(R.id.end);
         polylines = new ArrayList<>();
@@ -304,14 +309,11 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
         key=SharedPrefManager.getInstance(getContext()).getKey();
         if(key!=null){
             int kms = (int) location.getSpeed();
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference(UserTokenAdmin);
             HashMap<String,Object> hashMap=new HashMap<>();
             hashMap.put("lat",String.valueOf(location.getLatitude()));
             hashMap.put("lng",String.valueOf(location.getLongitude()));
             hashMap.put("speed",kms);
-            reference.child(User_Token).updateChildren(hashMap);
-
-
+            reference.updateChildren(hashMap);
 
 
         }
@@ -577,14 +579,11 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
                 switch (resultCode) {
                     case Activity.RESULT_OK:
                         buildGoogleapiclint();
-
-
                         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity()
                                 , Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                             return;
                         }
-
                         break;
                     case Activity.RESULT_CANCELED:
 
@@ -601,17 +600,17 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
             case 99: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do
-                    // .
-                    if (ContextCompat.checkSelfPermission(getActivity(),
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-                        buildGoogleapiclint();
-                    }
-                } else {
+                        // permission was granted, yay! Do the
+                        // location-related task you need to do
+                        // .
+                        if (ContextCompat.checkSelfPermission(getActivity(),
+                                Manifest.permission.ACCESS_FINE_LOCATION)
+                                == PackageManager.PERMISSION_GRANTED) {
+                            buildGoogleapiclint();
+                        }
+                    } else {
                 }
                 return;
             }

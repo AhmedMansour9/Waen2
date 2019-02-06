@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.onesignal.OSPermissionSubscriptionState;
+import com.onesignal.OneSignal;
 import com.waen.waen.Language;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
@@ -43,13 +45,13 @@ public class Home_Supervisor extends AppCompatActivity {
     private ViewPager viewPager;
     View view;
     TextView userName,userGender,userPhone,userRemaining;
-
+    String Usertoken;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.fragment_home_supervisor);
         viewPager =findViewById(R.id.viewpager);
+        Usertoken=SharedPrefManager.getInstance(getBaseContext()).getUserToken();
         tabLayout =findViewById(R.id.tabs);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
@@ -58,6 +60,8 @@ public class Home_Supervisor extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         setupTabIcons();
         RefreshTabs();
+
+
     }
 
     public void RefreshTabs(){
@@ -103,11 +107,9 @@ public class Home_Supervisor extends AppCompatActivity {
             tabLayout.getTabAt(3).setCustomView(view4);
         }
     }
-
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         String  statue= SharedPrefManager.getInstance(this).getStartTrip();
-
         if(Language.isRTL()){
             if(statue!=null){
                 adapter.addFrag(new Details_Message_Supervisor(), getResources().getString(R.string.feedback));
@@ -126,7 +128,6 @@ public class Home_Supervisor extends AppCompatActivity {
                 adapter.addFrag(new Backup_Supervisor(), getResources().getString(R.string.backup));
                 adapter.addFrag(new Return_Supervisor(), getResources().getString(R.string.retur));
                 adapter.addFrag(new Details_Message_Supervisor(), getResources().getString(R.string.feedback));
-
             }else {
                 adapter.addFrag(new Choose_BackUp_Return(), getResources().getString(R.string.bus));
                 adapter.addFrag(new Backup_Supervisor(), getResources().getString(R.string.backup));
@@ -167,16 +168,16 @@ public class Home_Supervisor extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-//        if (viewPager.getCurrentItem() != 0) {
-//
-//            viewPager.setCurrentItem(0,true);
-//        }else{
-//            super.onBackPressed();
-//        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+////        if (viewPager.getCurrentItem() != 0) {
+////
+////            viewPager.setCurrentItem(0,true);
+////        }else{
+////            super.onBackPressed();
+////        }
+//    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -199,8 +200,6 @@ public class Home_Supervisor extends AppCompatActivity {
                 }
             }
         }
-
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 

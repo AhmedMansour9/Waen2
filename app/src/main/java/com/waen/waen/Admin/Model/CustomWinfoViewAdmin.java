@@ -16,20 +16,20 @@ public class CustomWinfoViewAdmin implements GoogleMap.InfoWindowAdapter {
 
     public CustomWinfoViewAdmin(Context context) {
         this.comtec = context;
-        viewe = LayoutInflater.from(context).inflate(R.layout.windowsinfogooglemap, null);
+        viewe = LayoutInflater.from(context).inflate(R.layout.windowinfogoogleadmin, null);
     }
 
     private void rendowWindowText(Marker marker, View view) {
 
         String title = marker.getTitle();
-        TextView tvTitle = view.findViewById(R.id.T_BusName);
+        TextView tvTitle = view.findViewById(R.id.T_bussName);
 
         if (!title.equals("")) {
             tvTitle.setText(title);
         }
 
         String snippet = marker.getSnippet();
-        TextView tvSnippet = view.findViewById(R.id.T_BusNumber);
+        TextView tvSnippet = view.findViewById(R.id.T_bussNumber);
 
         if (!snippet.equals("")) {
             tvSnippet.setText(snippet);
@@ -40,10 +40,10 @@ public class CustomWinfoViewAdmin implements GoogleMap.InfoWindowAdapter {
 //                "drawable", context.getPackageName());
 //        img.setImageResource(imageId);
         TextView SuperVisor = view.findViewById(R.id.T_SuperVisor);
-        TextView Speed = view.findViewById(R.id.T_Speed);
+        TextView Speed = view.findViewById(R.id.T_speeed);
 
         SuperVisor.setText(infoWindowData.getSupervisorName());
-        Speed.setText(infoWindowData.getSpeed());
+        Speed.setText(infoWindowData.getSpeed()+"");
 
 
     }

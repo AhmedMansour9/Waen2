@@ -8,12 +8,12 @@ public class BusDetail {
     String supervisorName;
     String lat;
     String lng;
-    String speed;
+    int speed;
 
     public BusDetail() {
     }
 
-    public BusDetail(String busName, String action, String busNumber, String supervisorName, String lat, String lng, String speed) {
+    public BusDetail(String busName, String action, String busNumber, String supervisorName, String lat, String lng, int speed) {
         this.busName = busName;
         this.action = action;
         this.busNumber = busNumber;
@@ -71,11 +71,11 @@ public class BusDetail {
         this.lng = lng;
     }
 
-    public String getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(String speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 }

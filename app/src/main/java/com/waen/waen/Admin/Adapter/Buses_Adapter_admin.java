@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.waen.waen.Admin.Model.BusDetail;
 import com.waen.waen.Admin.Model.GetBusesInfo;
+import com.waen.waen.Admin.View.Details_Bus;
 import com.waen.waen.R;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class Buses_Adapter_admin extends RecyclerView.Adapter<Buses_Adapter_admi
     public static List<BusDetail> filteredList=new ArrayList<>();
     View itemView;
     Context con;
-
+    Details_Bus details_bus;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView T_BusName,T_Busnumber,T_Start;
@@ -40,9 +42,9 @@ public class Buses_Adapter_admin extends RecyclerView.Adapter<Buses_Adapter_admi
         this.filteredList=list;
         this.con=context;
     }
-//    public void setClickListener(Details_Service itemClickListener) {
-//        this.details_service = itemClickListener;
-//    }
+    public void setClickListener(Details_Bus itemClickListener) {
+        this.details_bus = itemClickListener;
+    }
     @Override
     public Buses_Adapter_admin.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         itemView = LayoutInflater.from(parent.getContext())
@@ -55,7 +57,16 @@ public class Buses_Adapter_admin extends RecyclerView.Adapter<Buses_Adapter_admi
         holder.T_BusName.setText(filteredList.get(position).getBusName());
         holder.T_Start.setText(filteredList.get(position).getAction());
 
-
+    holder.itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(filteredList.get(position).getAction().equals("Start")) {
+                details_bus.show(filteredList.get(position).getLat(), filteredList.get(position).getLng());
+            }else {
+                Toast.makeText(con, "Selected Bus Not Started ..", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
     }
 
     @Override

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    tools:context=".Main.SendMessage">
+
+    <EditText
+        android:layout_width="@dimen/_240sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center_vertical"
+        android:hint="Title :"
+        android:textColorHint="#000"
+        android:background="@drawable/bcmessage"
+        android:paddingTop="@dimen/_3sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:id="@+id/E_Title"
+        android:paddingRight="@dimen/_10sdp"
+        android:textColor="#000"/>
+
+    <EditText
+        android:layout_width="@dimen/_240sdp"
+        android:layout_height="@dimen/_140sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/E_Title"
+        android:gravity="start"
+        android:hint="Message :"
+        android:textColorHint="#000"
+        android:background="@drawable/bcmessage"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:id="@+id/E_Message"
+        android:paddingRight="@dimen/_10sdp"
+        android:textColor="#000">
+
+    </EditText>
+
+    <Button
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/E_Message"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:background="@drawable/bcsendmsg"
+        android:text="@string/sendmsg"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/_16sdp"
+        android:textAllCaps="false"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:id="@+id/Btn_SendMessage"
+        />
+
+
+</RelativeLayout>

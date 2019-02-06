@@ -19,6 +19,16 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/logo"
         />
+
+    <ImageView
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/logout"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/logoout"
+        android:layout_marginRight="@dimen/_30sdp"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

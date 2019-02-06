@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -134,10 +135,28 @@ public class Backup_Supervisor extends Fragment implements Student_Id,StudenInfo
 
     @Override
     public void Student_Id(String id) {
-        progressdialog.setMessage("Please Wait While Sending Notification....");
-        progressdialog.show();
-        progressdialog.setCancelable(false);
+       String point= SharedPrefManager.getInstance(getActivity()).getStartTrip();
+       if(point!=null) {
+           progressdialog.setMessage("Please Wait While Sending Notification....");
+           progressdialog.show();
+           progressdialog.setCancelable(false);
 
-        StudenInFo_Presnter.GetStudentinfo(User_Token, "backup",id);
+           StudenInFo_Presnter.GetStudentinfo(User_Token, "backup", id);
+       }else {
+         ShowDialog();
+
+
+       }
+
+    }
+    public void ShowDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                //set icon
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                //set title
+                .setTitle("Warning")
+                //set message
+                .setMessage("Please Start a Trip First ..").show();
+
     }
 }

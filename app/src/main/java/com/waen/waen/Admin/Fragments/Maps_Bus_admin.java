@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,11 +30,14 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,8 +49,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.waen.waen.Admin.Adapter.Buses_Adapter_admin;
 import com.waen.waen.Admin.Model.BusDetail;
+import com.waen.waen.Admin.Model.CustomWinfoViewAdmin;
 import com.waen.waen.Admin.Model.GetBusesInfo;
 import com.waen.waen.Admin.Presenter.GetBuses_Presenter;
+import com.waen.waen.Admin.View.Details_Bus;
 import com.waen.waen.Admin.View.GetBusesMap_View;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
@@ -60,7 +66,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.google.android.gms.location.LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+public class Maps_Bus_admin extends Fragment implements Details_Bus,OnMapReadyCallback, com.google.android.gms.location.LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
 
     public Maps_Bus_admin() {
@@ -73,7 +79,7 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
     View view;
     RecyclerView recyclerBus;
     Buses_Adapter_admin buses_adapter;
-    GetBuses_Presenter getBuses_presenter;
+
     List<Marker> lismarket;
     HashMap<String, Marker> markerlist = new HashMap<>();
     ArrayList<String> listid;
@@ -87,11 +93,11 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_maps__bus_admin, container, false);
-//        getBuses_presenter=new GetBuses_Presenter(getActivity(),this);
+
         User_token = SharedPrefManager.getInstance(getContext()).getUserToken();
         listid = new ArrayList<>();
         lismarket = new ArrayList<Marker>();
-
+        checkLocationPermission();
 
 //        getBuses_presenter.GetBuses(User_token);
         initMap();
@@ -100,7 +106,35 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
 
         return  view;
     }
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        REQUEST_LOCATION_CODE);
+
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        REQUEST_LOCATION_CODE);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
     public void GetBusesFirebase(final Firebasecallback firebasecallback) {
         DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference(User_token);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -110,10 +144,12 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
                 buses_adapter.notifyDataSetChanged();
            for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                 busDetail=dataSnapshot1.getValue(BusDetail.class);
+
+               firebasecallback.Callback(busDetail);
                busDetailss.add(busDetail);
            }
                 buses_adapter.notifyDataSetChanged();
-                firebasecallback.Callback(busDetail);
+
             }
 
             @Override
@@ -124,6 +160,18 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
 
 
     }
+
+    @Override
+    public void show(String lat, String lon) {
+        LatLng a = new LatLng(Double.parseDouble(lat),Double.parseDouble( lon));
+        CameraPosition currentPlace = new CameraPosition.Builder()
+                .target(a)
+                .bearing(240).tilt(30).zoom(16f).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                currentPlace));
+
+    }
+
     private interface Firebasecallback {
         void Callback(BusDetail e);
     }
@@ -132,7 +180,7 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
         recyclerBus=view.findViewById(R.id.recycler_Buses);
         recyclerBus.setHasFixedSize(true);
         buses_adapter = new Buses_Adapter_admin(busDetailss, getContext());
-//        buses_adapter.setClickListener(this);
+        buses_adapter.setClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerBus.setLayoutManager(linearLayoutManager);
@@ -209,38 +257,57 @@ public class Maps_Bus_admin extends Fragment implements OnMapReadyCallback, com.
         GetBusesFirebase(new Firebasecallback() {
             @Override
             public void Callback(BusDetail e) {
+                if(e.getAction().equals("Start")) {
+//                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+                    listid.add(e.getBusName());
+                    markerlist.get(e.getBusName());//get marker from list
 
-                listid.add(e.getBusName());
-                markerlist.get(e.getBusName());//get marker from list
+                    if (markerlist.containsKey(e.getBusName())) {
+                        Marker marker = markerlist.get(e.getBusName());
+                        marker.remove();
+                    }
 
-                if(markerlist.containsKey(e.getBusName())) {
-                    Marker marker = markerlist.get(e.getBusName());
-                    marker.remove();
+                    LatLng l = new LatLng(Double.parseDouble(e.getLat()), Double.parseDouble(e.getLng()));
+
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(l)
+                            .title(e.getBusName())
+                            .snippet(e.getBusNumber())
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.iconbus));
+//
+//
+                    BusDetail info = new BusDetail();
+
+                    info.setBusName(e.getBusName());
+
+
+                    info.setBusNumber(e.getBusNumber());
+                    info.setSpeed(e.getSpeed());
+                    info.setSupervisorName(e.getSupervisorName());
+                    CustomWinfoViewAdmin customInfoWindow = new CustomWinfoViewAdmin(getActivity());
+                    googleMap.setInfoWindowAdapter(customInfoWindow);
+
+                    m = googleMap.addMarker(markerOptions);
+                    markerlist.put(e.getBusName(), m);//add marker to list
+                    m.setTag(info);
+                    m.showInfoWindow();
+//                builder.include(m.getPosition());
+//                try {
+//
+//                        final LatLngBounds bounds = builder.build();
+//                        googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 18));
+//                    } catch (Exception e2) {
+//                        e2.printStackTrace();
+//                }
+            }else {
+                    listid.add(e.getBusName());
+                    markerlist.get(e.getBusName());//get marker from list
+
+                    if (markerlist.containsKey(e.getBusName())) {
+                        Marker marker = markerlist.get(e.getBusName());
+                        marker.remove();
+                    }                }
                 }
-
-                LatLng l = new LatLng(Double.parseDouble(e.getLat()), Double.parseDouble(e.getLng()));
-
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(l)
-                        .title(e.getBusName())
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
-
-
-                BusDetail info = new BusDetail();
-                info.setBusName(info.getBusName());
-                info.setBusNumber(info.getBusNumber());
-                info.setSpeed(e.getSpeed());
-                info.setSupervisorName(e.getSupervisorName());
-                CustomWinfoView customInfoWindow = new CustomWinfoView(getActivity());
-                googleMap.setInfoWindowAdapter(customInfoWindow);
-
-                m = googleMap.addMarker(markerOptions);
-                markerlist.put(e.getBusName(),m);//add marker to list
-                m.setTag(info);
-                m.showInfoWindow();
-
-
-            }
         });
 
     }

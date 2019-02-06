@@ -41,5 +41,4 @@ public class StartTrip_Response {
     public void setError(String error) {
         this.error = error;
     }
-
 }

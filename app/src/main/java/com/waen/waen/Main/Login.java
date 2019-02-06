@@ -12,41 +12,58 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.fourhcode.forhutils.FUtilsValidation;
+import com.onesignal.OSPermissionSubscriptionState;
+import com.onesignal.OneSignal;
 import com.waen.waen.Admin.Activities.Navigation_Admin;
 import com.waen.waen.Main.Model.LoginInFo;
 import com.waen.waen.Main.Presenter.LoginPresenter;
+import com.waen.waen.Main.Presenter.UpdatePlayer_Presenter;
 import com.waen.waen.Main.View.LoginView;
+import com.waen.waen.Main.View.UpdatePlayerid_View;
 import com.waen.waen.NetworikConntection;
+import com.waen.waen.Parent.Navigation_Parent;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
 import com.waen.waen.SuperVisor.Home_Supervisor;
 
-public class Login extends AppCompatActivity  implements LoginView {
+public class Login extends AppCompatActivity  implements LoginView, UpdatePlayerid_View {
     LoginPresenter login;
     Button Login;
     NetworikConntection Network;
     EditText E_Email,E_Password;
     ProgressBar progressBar;
     String Role;
+    UpdatePlayer_Presenter updatePlayer_presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        String Usertoken=SharedPrefManager.getInstance(this).getUserToken();
         Role=SharedPrefManager.getInstance(getApplicationContext()).getRole();
-        if(Role!=null){
-           if( Role.equals("admin")) {
-               startActivity(new Intent(Login.this, Navigation_Admin.class));
-               finish();
-           }else if ( Role.equals("supervisor")){
-               startActivity(new Intent(Login.this,Home_Supervisor.class));
-               finish();
-           }
-
-        }
+        updatePlayer_presenter=new UpdatePlayer_Presenter(this,this);
+        checkRole();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
         init();
         Sigin();
+
+
+    }
+    public void checkRole(){
+        if(Role!=null){
+            if( Role.equals("admin")) {
+                startActivity(new Intent(Login.this, Navigation_Admin.class));
+                finish();
+            }else if ( Role.equals("supervisor")){
+                startActivity(new Intent(Login.this,Home_Supervisor.class));
+                finish();
+            }
+            else if ( Role.equals("parent")){
+                startActivity(new Intent(Login.this, Navigation_Parent.class));
+                finish();
+            }
+
+        }
     }
     public void init(){
         E_Email=findViewById(R.id.E_Email);
@@ -85,9 +102,20 @@ public class Login extends AppCompatActivity  implements LoginView {
         SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginInFo.getUser_token());
         SharedPrefManager.getInstance(getApplicationContext()).saveRole(loginInFo.getRole());
         SharedPrefManager.getInstance(getApplicationContext()).saveId(loginInFo.getId());
+
+//        String email = Usertoken;
+//        OneSignal.setEmail("bassem");
+        OSPermissionSubscriptionState status = OneSignal.getPermissionSubscriptionState();
+//        status.getPermissionStatus().getEnabled();
+//        status.getSubscriptionStatus().getSubscribed();
+//        status.getSubscriptionStatus().getUserSubscriptionSetting();
+       String playerid= status.getSubscriptionStatus().getUserId();
+
+        updatePlayer_presenter.SendPlayerId(loginInFo.getUser_token(),playerid);
         progressBar.setVisibility(View.GONE);
      if(loginInFo.getRole().equals("parent")){
-         startActivity(new Intent(Login.this,Navigation_Admin.class));
+         SharedPrefManager.getInstance(getApplicationContext()).saveUserTokenAdmin(loginInFo.getUsertokenadmin());
+         startActivity(new Intent(Login.this,Navigation_Parent.class));
          finish();
 
 
@@ -99,8 +127,6 @@ public class Login extends AppCompatActivity  implements LoginView {
          SharedPrefManager.getInstance(getApplicationContext()).saveBusNumberStudent(loginInFo.getBusnumberstudent());
          SharedPrefManager.getInstance(getApplicationContext()).saveDriverName(loginInFo.getDrivername());
          SharedPrefManager.getInstance(getApplicationContext()).saveUserTokenAdmin(loginInFo.getUsertokenadmin());
-
-
          startActivity(new Intent(Login.this,Home_Supervisor.class));
          finish();
      }
@@ -123,5 +149,15 @@ public class Login extends AppCompatActivity  implements LoginView {
         Toast.makeText(getApplicationContext(), ""+getResources().getString(R.string.invalidemail), Toast.LENGTH_SHORT).show();
 
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void playerid() {
+
+    }
+
+    @Override
+    public void Error() {
+
     }
 }

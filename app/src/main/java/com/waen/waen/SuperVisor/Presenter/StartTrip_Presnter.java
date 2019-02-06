@@ -45,7 +45,7 @@ public class StartTrip_Presnter {
             public void onResponse(Call<StartTrip_Response> call, Response<StartTrip_Response> response) {
 
                 if (response.isSuccessful()) {
-                    cart_view.success(response.body().getData().getKey());
+                    cart_view.success(response.body().getData().getMessage());
                 } else {
                     cart_view.Error();
                 }
@@ -76,7 +76,7 @@ public class StartTrip_Presnter {
             public void onResponse(Call<StartTrip_Response> call, Response<StartTrip_Response> response) {
 
                 if (response.isSuccessful()) {
-                    cart_view.EndTrip(response.body().getData().getKey());
+                    cart_view.EndTrip(response.body().getData().getMessage());
                 } else {
                     cart_view.Error();
                 }
