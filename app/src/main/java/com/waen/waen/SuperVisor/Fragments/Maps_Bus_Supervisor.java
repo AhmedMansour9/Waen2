@@ -4,6 +4,7 @@ package com.waen.waen.SuperVisor.Fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
@@ -70,6 +71,7 @@ import com.waen.waen.SuperVisor.Model.InfoWindowData;
 import com.waen.waen.SuperVisor.Model.Routes_Details;
 import com.waen.waen.SuperVisor.Model.StudentsInfo;
 import com.waen.waen.SuperVisor.Presenter.GetStudentRouteInFo_Presenter;
+import com.waen.waen.SuperVisor.Presenter.LimitSpeed_Presnter;
 import com.waen.waen.SuperVisor.Presenter.StartTrip_Presnter;
 import com.waen.waen.SuperVisor.View.RouteInFo_View;
 import com.waen.waen.SuperVisor.View.TripKey;
@@ -108,12 +110,13 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
     public String StartLat,StartLon,EndLat,EndLon;
     Button start,end;
     StartTrip_Presnter startTrip_presnter;
-    String key;
+    String key,Speed;
     ProgressDialog progressdialog;
     Marker m;
     Boolean movie=false;
     String UserTokenAdmin;
     DatabaseReference reference;
+    LimitSpeed_Presnter speed_presnter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -216,7 +219,7 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
         String Return = SharedPrefManager.getInstance(getContext()).getReturn();
         UserTokenAdmin=SharedPrefManager.getInstance(getContext()).getUserTokenAdmin();
          reference = FirebaseDatabase.getInstance().getReference(UserTokenAdmin).child(User_Token);
-
+        speed_presnter=new LimitSpeed_Presnter(getContext());
         start=view.findViewById(R.id.start);
         end=view.findViewById(R.id.end);
         polylines = new ArrayList<>();
@@ -314,9 +317,14 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
             hashMap.put("lng",String.valueOf(location.getLongitude()));
             hashMap.put("speed",kms);
             reference.updateChildren(hashMap);
-
-
+            if(Speed!=null) {
+                int speeds = Integer.parseInt(Speed);
+                if (kms > speeds) {
+                    speed_presnter.Speedlimit(User_Token, String.valueOf(speeds));
+                }
+            }
         }
+
     }
 
     @Override
@@ -341,7 +349,7 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
 
     @Override
     public void getlist(Routes_Details routes_details) {
-
+    Speed=routes_details.getBusSpeed();
      if(Statues.equals("backup")) {
          StartLat = routes_details.getRoutesLatStartPint();
          StartLon = routes_details.getRoutesLngStartPint();
@@ -481,13 +489,15 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
                             info.setStudentAddress(StudentRouteInFo.get(i).getStudentAddress());
                             info.setParentPhone(StudentRouteInFo.get(i).getParentPhone());
                             info.setParentAddress(StudentRouteInFo.get(i).getParentAddress());
-                            CustomWinfoView customInfoWindow = new CustomWinfoView(getActivity());
-                            googleMap.setInfoWindowAdapter(customInfoWindow);
+                            Context context = getActivity();
+                            if (context != null) {
+                                CustomWinfoView customInfoWindow = new CustomWinfoView(context);
+                                googleMap.setInfoWindowAdapter(customInfoWindow);
 
-                            m = googleMap.addMarker(markerOptions);
-                            m.setTag(info);
-                            m.showInfoWindow();
-
+                                m = googleMap.addMarker(markerOptions);
+                                m.setTag(info);
+                                m.showInfoWindow();
+                            }
 //                            marker.setTag(Integer.valueOf(i));
                             builder.include(m.getPosition());
                         } catch (Exception e) {

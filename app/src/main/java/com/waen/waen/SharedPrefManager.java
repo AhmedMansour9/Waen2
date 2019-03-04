@@ -188,4 +188,16 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences("KEY", Context.MODE_PRIVATE);
         return  sharedPreferences.getString("key", null);
     }
+    public boolean saveUserTokenParent(String key){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences("Parent", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("parent", key);
+        editor.apply();
+        return true;
+    }
+
+    public String getUserTokenParent(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences("Parent", Context.MODE_PRIVATE);
+        return  sharedPreferences.getString("parent", null);
+    }
 }

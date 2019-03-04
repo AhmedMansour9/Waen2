@@ -84,12 +84,12 @@ public class Parent_Message extends Fragment implements Messages_Inbox_View {
 
         if (Language.isRTL()) {
             // The view has RTL layout
-            adapter.addFragment(new Inbox_Parent(),"Inbox");
-            adapter.addFragment(new Sent_Parent(), "Sent");
+            adapter.addFragment(new Inbox_Parent(),getResources().getString(R.string.inbox));
+            adapter.addFragment(new Sent_Parent(),getResources().getString(R.string.sent));
         } else {
             // The view has LTR layout
-            adapter.addFragment(new Sent_Parent(),"Sent");
-            adapter.addFragment(new Inbox_Parent(), "Inbox");
+            adapter.addFragment(new Sent_Parent(),getResources().getString(R.string.sent));
+            adapter.addFragment(new Inbox_Parent(),getResources().getString(R.string.inbox));
         }
         viewPager.setCurrentItem(adapter.getCount() - 1);
         viewPager.setAdapter(adapter);

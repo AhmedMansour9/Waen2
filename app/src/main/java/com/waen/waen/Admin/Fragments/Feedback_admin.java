@@ -89,12 +89,12 @@ public class Feedback_admin extends Fragment  {
 
         if (Language.isRTL()) {
             // The view has RTL layout
-            adapter.addFragment(new SuperVisor_Message(),"Super Visor");
-            adapter.addFragment(new Parent_Message(), "Parent");
+            adapter.addFragment(new SuperVisor_Message(),getResources().getString(R.string.supervisorname));
+            adapter.addFragment(new Parent_Message(), getResources().getString(R.string.paren));
         } else {
             // The view has LTR layout
-            adapter.addFragment(new Parent_Message(),"Parent");
-            adapter.addFragment(new SuperVisor_Message(), "Super Visor");
+            adapter.addFragment(new Parent_Message(), getResources().getString(R.string.paren));
+            adapter.addFragment(new SuperVisor_Message(),getResources().getString(R.string.supervisorname));
 
         }
 

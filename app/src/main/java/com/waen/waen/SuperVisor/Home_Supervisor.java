@@ -35,24 +35,25 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Home_Supervisor extends AppCompatActivity {
+public class Home_Supervisor extends Fragment {
 
 
     public Home_Supervisor() {
         // Required empty public constructor
     }
-    private TabLayout tabLayout;
+    public static TabLayout tabLayout;
     private ViewPager viewPager;
     View view;
     TextView userName,userGender,userPhone,userRemaining;
     String Usertoken;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home_supervisor);
-        viewPager =findViewById(R.id.viewpager);
-        Usertoken=SharedPrefManager.getInstance(getBaseContext()).getUserToken();
-        tabLayout =findViewById(R.id.tabs);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view= inflater.inflate(R.layout.fragment_home_supervisor, container, false);
+        viewPager =view.findViewById(R.id.viewpager);
+        Usertoken=SharedPrefManager.getInstance(getContext()).getUserToken();
+        tabLayout =view.findViewById(R.id.tabs);
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setRotationX(180);
@@ -61,7 +62,7 @@ public class Home_Supervisor extends AppCompatActivity {
         setupTabIcons();
         RefreshTabs();
 
-
+    return view;
     }
 
     public void RefreshTabs(){
@@ -69,7 +70,7 @@ public class Home_Supervisor extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                FragmentManager fm = getSupportFragmentManager(); // or 'getSupportFragmentManager();'
+                FragmentManager fm = getChildFragmentManager(); // or 'getSupportFragmentManager();'
                 int count = fm.getBackStackEntryCount();
                 if(count!=0) {
                     for (int i = 0; i < count; ++i) {
@@ -96,10 +97,10 @@ public class Home_Supervisor extends AppCompatActivity {
         View view3 = getLayoutInflater().inflate(R.layout.iconreturn_supervisor, null);
         View view4 = getLayoutInflater().inflate(R.layout.iconfeedback_admin, null);
         if(Language.isRTL()){
-            tabLayout.getTabAt(0).setCustomView(view4);
-            tabLayout.getTabAt(1).setCustomView(view3);
-            tabLayout.getTabAt(2).setCustomView(view2);
-            tabLayout.getTabAt(3).setCustomView(view1);
+            tabLayout.getTabAt(3).setCustomView(view4);
+            tabLayout.getTabAt(2).setCustomView(view3);
+            tabLayout.getTabAt(1).setCustomView(view2);
+            tabLayout.getTabAt(0).setCustomView(view1);
         }else {
             tabLayout.getTabAt(0).setCustomView(view1);
             tabLayout.getTabAt(1).setCustomView(view2);
@@ -108,19 +109,19 @@ public class Home_Supervisor extends AppCompatActivity {
         }
     }
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        String  statue= SharedPrefManager.getInstance(this).getStartTrip();
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        String  statue= SharedPrefManager.getInstance(getContext()).getStartTrip();
         if(Language.isRTL()){
             if(statue!=null){
-                adapter.addFrag(new Details_Message_Supervisor(), getResources().getString(R.string.feedback));
-                adapter.addFrag(new Return_Supervisor(), getResources().getString(R.string.retur));
-                adapter.addFrag(new Backup_Supervisor(), getResources().getString(R.string.backup));
                 adapter.addFrag(new Maps_Bus_Supervisor(), getResources().getString(R.string.bus));
-            }else {
-                adapter.addFrag(new Details_Message_Supervisor(), getResources().getString(R.string.feedback));
-                adapter.addFrag(new Return_Supervisor(), getResources().getString(R.string.retur));
                 adapter.addFrag(new Backup_Supervisor(), getResources().getString(R.string.backup));
+                adapter.addFrag(new Return_Supervisor(), getResources().getString(R.string.retur));
+                adapter.addFrag(new Details_Message_Supervisor(), getResources().getString(R.string.feedback));
+            }else {
                 adapter.addFrag(new Choose_BackUp_Return(), getResources().getString(R.string.bus));
+                adapter.addFrag(new Backup_Supervisor(), getResources().getString(R.string.backup));
+                adapter.addFrag(new Return_Supervisor(), getResources().getString(R.string.retur));
+                adapter.addFrag(new Details_Message_Supervisor(), getResources().getString(R.string.feedback));
             }
         }else {
             if(statue!=null){
@@ -178,29 +179,5 @@ public class Home_Supervisor extends AppCompatActivity {
 ////            super.onBackPressed();
 ////        }
 //    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        List<Fragment> fragments = getSupportFragmentManager().getFragments();
-        if (fragments != null) {
-            for (Fragment fragment : fragments) {
-                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
-        }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        List<Fragment> listOfFragments =getSupportFragmentManager().getFragments();
-
-        if(listOfFragments.size()>=1){
-            for (Fragment fragment : listOfFragments) {
-                if(fragment instanceof Maps_Bus_Supervisor){
-                    fragment.onActivityResult(requestCode, resultCode, data);
-                }
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
 }

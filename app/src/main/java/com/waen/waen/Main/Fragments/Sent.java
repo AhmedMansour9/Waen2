@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import com.waen.waen.Admin.NetworikConntection;
 import com.waen.waen.Main.Adapter.LastMessage_Adapter_admin;
+import com.waen.waen.Main.Adapter.SentMessage_Adapter;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
 import com.waen.waen.SuperVisor.Model.Inbox_details;
@@ -36,7 +37,7 @@ public class Sent extends Fragment implements Messages_Inbox_View,SwipeRefreshLa
 
     View view;
     RecyclerView recyclerNotification;
-    LastMessage_Adapter_admin super_visors_adapter_admin;
+    SentMessage_Adapter super_visors_adapter_admin;
     SwipeRefreshLayout mSwipeRefreshLayout;
     NetworikConntection networikConntection;
     FrameLayout Frame_FeedBack;
@@ -67,7 +68,10 @@ public class Sent extends Fragment implements Messages_Inbox_View,SwipeRefreshLa
 
     public void init(){
         Frame_FeedBack=view.findViewById(R.id.Frame_send);
-        User_Token = SharedPrefManager.getInstance(getContext()).getUserToken();
+        User_Token = SharedPrefManager.getInstance(getContext()).getUserTokenParent();
+        if(User_Token==null){
+            User_Token = SharedPrefManager.getInstance(getContext()).getUserToken();
+        }
     }
 
     private void Recyclview() {
@@ -88,11 +92,14 @@ public class Sent extends Fragment implements Messages_Inbox_View,SwipeRefreshLa
             @Override
             public void run() {
                 if (networikConntection.isNetworkAvailable(getContext())) {
-                    if(Role.equals("admin")) {
+                    if(Role.equals("supervisor")) {
                         mSwipeRefreshLayout.setRefreshing(true);
                         message_Inbox_Presenter.Sent_SuperVisor(User_Token);
-                    }
+                    }else if(Role.equals("parent")){
+                        mSwipeRefreshLayout.setRefreshing(true);
+                        message_Inbox_Presenter.Send_Parent(User_Token);
 
+                    }
                 } else {
                     Snackbar.make(Frame_FeedBack,getResources().getString(R.string.internet),1500);
                 }
@@ -123,9 +130,7 @@ public class Sent extends Fragment implements Messages_Inbox_View,SwipeRefreshLa
 
     @Override
     public void SendMessages_SuperVisor(List<Inbox_details> inbox_details) {
-        super_visors_adapter_admin = new LastMessage_Adapter_admin(inbox_details, getContext());
-//        CARS.setClickListener(this);
-
+        super_visors_adapter_admin = new SentMessage_Adapter(inbox_details, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerNotification.setLayoutManager(linearLayoutManager);

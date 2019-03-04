@@ -93,7 +93,7 @@ public class MapBus_Parent extends Fragment implements Buses_Students_View,Detai
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_map_bus__parent, container, false);
-        User_token = SharedPrefManager.getInstance(getContext()).getUserToken();
+        User_token = SharedPrefManager.getInstance(getContext()).getUserTokenParent();
         buses_students_presnter=new Buses_Students_Presnter(getActivity(),this);
         listid = new ArrayList<>();
         lismarket = new ArrayList<Marker>();
@@ -127,10 +127,6 @@ public class MapBus_Parent extends Fragment implements Buses_Students_View,Detai
         }
     }
 
-
-    public void GetBusesFirebase(final Firebasecallback firebasecallback) {
-
-    }
 
     @Override
     public void show(String lat, String lon) {
@@ -188,9 +184,6 @@ public class MapBus_Parent extends Fragment implements Buses_Students_View,Detai
 
     }
 
-    private interface Firebasecallback {
-        void Callback(BusDetail e);
-    }
 
     private void Recyclview() {
         recyclerBus=view.findViewById(R.id.recycler_Buses);

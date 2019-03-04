@@ -10,7 +10,11 @@
             android:id="@+id/supervisor"
             android:title="@string/supervisoranddriver" />
 
-        <item
+                <item
+                    android:id="@+id/absence"
+                    android:title="@string/absence" />
+
+                <item
             android:id="@+id/logout"
             android:title="@string/logout" />
 

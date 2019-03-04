@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Admin.Activities.Request_Absence">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bar"
+        android:theme="@style/AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#0baefb"
+            app:popupTheme="@style/PopupOverlay">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/app_name"
+                    android:textSize="@dimen/_20sdp"
+                    android:textColor="#fff"
+                    />
+
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <Spinner
+        android:id="@+id/Spin_Students"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/bar"
+        android:paddingRight="@dimen/_10sdp"
+        android:background="@drawable/bcdropdown"
+        android:gravity="center"
+        android:paddingLeft="@dimen/_10sdp"
+        android:textColor="#000" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/from"
+        android:text="@string/from"
+        android:layout_below="@+id/Spin_Students"
+        android:textColor="#706a6a"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+
+        />
+    <TextView
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:textColor="#706a6a"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingRight="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/Spin_Students"
+        android:background="@drawable/bcdropdown"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_toLeftOf="@+id/from"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:id="@+id/Date_From"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/to"
+        android:text="@string/to"
+        android:layout_below="@+id/from"
+        android:textColor="#706a6a"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        />
+    <TextView
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:textColor="#706a6a"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingRight="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/from"
+        android:background="@drawable/bcdropdown"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_toLeftOf="@+id/from"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:id="@+id/Date_To"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:text="@string/title"
+        android:layout_below="@+id/to"
+        android:textColor="#706a6a"
+        android:layout_marginTop="@dimen/_35sdp"
+        android:layout_marginRight="@dimen/_40sdp"
+        />
+    <EditText
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:textColor="#706a6a"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingRight="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/to"
+        android:background="@drawable/bcdropdown"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_toLeftOf="@+id/from"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:id="@+id/E_Title"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/message"
+        android:text="@string/message"
+        android:layout_below="@+id/title"
+        android:textColor="#706a6a"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        />
+    <EditText
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:textColor="#706a6a"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingRight="@dimen/_5sdp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/title"
+        android:background="@drawable/bcdropdown"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_toLeftOf="@+id/from"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:id="@+id/E_Message"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_below="@+id/E_Message"
+        android:layout_centerHorizontal="true"
+        android:background="#0baefb"
+        android:text="@string/sendmsg"
+        android:textAllCaps="false"
+        android:id="@+id/SendMessage"
+        android:layout_marginTop="@dimen/_60sdp"
+
+        />
+
+    <ProgressBar
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_centerInParent="true"
+        android:id="@+id/progross"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

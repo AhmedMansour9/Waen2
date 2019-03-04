@@ -60,6 +60,18 @@ public class Routes_Details {
     @SerializedName("routesLngEndPint")
     @Expose
     private String routesLngEndPint;
+    @SerializedName("busSpeed")
+    @Expose
+    private String busSpeed;
+
+    public String getBusSpeed() {
+        return busSpeed;
+    }
+
+    public void setBusSpeed(String busSpeed) {
+        this.busSpeed = busSpeed;
+    }
+
 
     public List<InFo> getData() {
         return data;

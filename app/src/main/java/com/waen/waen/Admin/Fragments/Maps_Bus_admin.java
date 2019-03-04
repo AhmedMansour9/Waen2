@@ -3,6 +3,7 @@ package com.waen.waen.Admin.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -84,7 +85,7 @@ public class Maps_Bus_admin extends Fragment implements Details_Bus,OnMapReadyCa
     HashMap<String, Marker> markerlist = new HashMap<>();
     ArrayList<String> listid;
     Marker m;
-
+    CustomWinfoViewAdmin customInfoWindow;
     String User_token;
     BusDetail busDetail;
     List<BusDetail> busDetailss=new ArrayList<>();
@@ -284,13 +285,16 @@ public class Maps_Bus_admin extends Fragment implements Details_Bus,OnMapReadyCa
                     info.setBusNumber(e.getBusNumber());
                     info.setSpeed(e.getSpeed());
                     info.setSupervisorName(e.getSupervisorName());
-                    CustomWinfoViewAdmin customInfoWindow = new CustomWinfoViewAdmin(getActivity());
+                    Context context = getActivity();
+                    if (context != null){
+                         customInfoWindow = new CustomWinfoViewAdmin(context);
                     googleMap.setInfoWindowAdapter(customInfoWindow);
 
                     m = googleMap.addMarker(markerOptions);
                     markerlist.put(e.getBusName(), m);//add marker to list
                     m.setTag(info);
                     m.showInfoWindow();
+                }
 //                builder.include(m.getPosition());
 //                try {
 //

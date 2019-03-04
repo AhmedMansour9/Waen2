@@ -55,13 +55,13 @@ public class LoginPresenter {
                         loginIn.setBusnumberstudent(response.body().getData().getBusNumberStudent());
                         loginIn.setRole(response.body().getData().getRole());
                         loginIn.setUsertokenadmin(response.body().getData().getUserTokenAdmin());
+                        loginIn.setUsertokenParent(response.body().getData().getUserTokenParent());
                         loginvieew.OpenRole(loginIn);
                     } else if(response.body().getData().getMessage().equals("login filed try again")){
                         loginvieew.Invalidemail("");
                     }
             }else {
                     loginvieew.showError("");
-
                 }
             }
 

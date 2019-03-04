@@ -5,7 +5,9 @@ package com.waen.waen.Main.Model;
  */
 
 public class LoginInFo {
-    private String id,name,email,image,user_token,phone,role,busname,busnumber,buscapcity,busnumberstudent,drivername,usertokenadmin;
+    private String id,name,email,image,user_token,phone,role,
+            busname,busnumber,buscapcity,busnumberstudent,drivername,usertokenadmin
+            ,usertokenParent;
 
     public String getId() {
         return id;
@@ -109,5 +111,13 @@ public class LoginInFo {
 
     public void setUsertokenadmin(String usertokenadmin) {
         this.usertokenadmin = usertokenadmin;
+    }
+
+    public String getUsertokenParent() {
+        return usertokenParent;
+    }
+
+    public void setUsertokenParent(String usertokenParent) {
+        this.usertokenParent = usertokenParent;
     }
 }

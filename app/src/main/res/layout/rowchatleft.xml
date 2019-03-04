@@ -7,7 +7,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/chatleft"
-        android:text="ahmedjndjnddsfsdf"
         android:id="@+id/T_Message"
         android:padding="@dimen/_8sdp"
         android:textColor="#0a0a0a"

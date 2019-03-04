@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Buses_Students {
 
-
     @SerializedName("studentsId")
     @Expose
     private String studentsId;
@@ -36,9 +35,18 @@ public class Buses_Students {
     @SerializedName("supervisorsGender")
     @Expose
     private String supervisorsGender;
+    @SerializedName("supervisorsPhone")
+    @Expose
+    private String supervisorsPhone;
     @SerializedName("supervisorsUserToken")
     @Expose
     private String supervisorsUserToken;
+    @SerializedName("driversName")
+    @Expose
+    private String driversName;
+    @SerializedName("driversPhone")
+    @Expose
+    private String driversPhone;
 
     public String getStudentsId() {
         return studentsId;
@@ -120,11 +128,40 @@ public class Buses_Students {
         this.supervisorsGender = supervisorsGender;
     }
 
+    public String getSupervisorsPhone() {
+        return supervisorsPhone;
+    }
+
+    public void setSupervisorsPhone(String supervisorsPhone) {
+        this.supervisorsPhone = supervisorsPhone;
+    }
+
     public String getSupervisorsUserToken() {
         return supervisorsUserToken;
     }
 
     public void setSupervisorsUserToken(String supervisorsUserToken) {
         this.supervisorsUserToken = supervisorsUserToken;
+    }
+
+    public String getDriversName() {
+        return driversName;
+    }
+
+    public void setDriversName(String driversName) {
+        this.driversName = driversName;
+    }
+
+    public String getDriversPhone() {
+        return driversPhone;
+    }
+
+    public void setDriversPhone(String driversPhone) {
+        this.driversPhone = driversPhone;
+    }
+
+    @Override
+    public String toString() {
+        return studentsName;
     }
 }

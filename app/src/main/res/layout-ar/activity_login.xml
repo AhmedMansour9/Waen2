@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="com.waen.waen.Main.Login">
+
+    <ImageView
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:src="@drawable/waen"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo"
+        />
+
+    <RelativeLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_105sdp"
+        android:layout_below="@+id/logo"
+        android:id="@+id/rela"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_centerHorizontal="true">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/bcdedittext"
+            android:drawableRight="@drawable/email"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+
+            android:hint="@string/email"
+            android:textColor="#000"
+            android:textColorHint="#a6a6a6"
+            android:drawablePadding="@dimen/_10sdp"
+            android:id="@+id/E_Email"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/bcdedittext"
+            android:drawableRight="@drawable/lock"
+            android:paddingRight="@dimen/_10sdp"
+            android:hint="@string/password"
+            android:textColorHint="#a6a6a6"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textColor="#000"
+            android:layout_below="@+id/E_Email"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:drawablePadding="@dimen/_10sdp"
+            android:id="@+id/E_Password"
+            android:inputType="textPassword"
+            />
+    </RelativeLayout>
+    <Button
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/rela"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:background="@drawable/bclogin"
+        android:text="@string/login"
+        android:id="@+id/Login"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_18sdp"
+        />
+    <ProgressBar
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_centerInParent="true"
+        android:id="@+id/Progrosspar"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>

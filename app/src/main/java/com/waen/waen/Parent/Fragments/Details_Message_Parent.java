@@ -59,7 +59,7 @@ public class Details_Message_Parent extends Fragment implements Messages_Inbox_V
         message_Inbox_Presenter=new Message_Inbox_Presenter(getActivity(),this);
         floatingActionButton = view.findViewById(R.id.fab);
         User_Admin = SharedPrefManager.getInstance(getActivity()).getUserTokenAdmin();
-        User = SharedPrefManager.getInstance(getActivity()).getUserToken();
+        User = SharedPrefManager.getInstance(getActivity()).getUserTokenParent();
         viewPager = view.findViewById(R.id.viewpa);
         String Role=SharedPrefManager.getInstance(getContext()).getRole();
         setupViewPager(viewPager);
@@ -100,12 +100,12 @@ public class Details_Message_Parent extends Fragment implements Messages_Inbox_V
 
         if (Language.isRTL()) {
             // The view has RTL layout
-            adapter.addFragment(new Inbox(), "Inbox");
-            adapter.addFragment(new Sent(), "Sent");
+            adapter.addFragment(new Inbox(), getResources().getString(R.string.inbox));
+            adapter.addFragment(new Sent(), getResources().getString(R.string.sent));
         } else {
             // The view has LTR layout
-            adapter.addFragment(new Sent(), "Sent");
-            adapter.addFragment(new Inbox(), "Inbox");
+            adapter.addFragment(new Sent(), getResources().getString(R.string.sent));
+            adapter.addFragment(new Inbox(), getResources().getString(R.string.inbox));
         }
 
         viewPager.setCurrentItem(adapter.getCount() - 1);

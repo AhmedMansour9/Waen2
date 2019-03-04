@@ -1,5 +1,7 @@
 package com.waen.waen.Retrofit;
 
+import com.waen.waen.Admin.Activities.Request_Absence;
+import com.waen.waen.Admin.Model.Absence_Response;
 import com.waen.waen.Admin.Model.All_SuperVisora_Response;
 import com.waen.waen.Admin.Model.GetBusesInfo_Response;
 import com.waen.waen.Admin.Model.Notifications;
@@ -8,7 +10,9 @@ import com.waen.waen.Admin.Model.Send_Message_Response;
 import com.waen.waen.Main.Model.UserLoginResponse;
 import com.waen.waen.Parent.Model.Buses_Students_Response;
 import com.waen.waen.SuperVisor.Model.Inbox_Response;
+import com.waen.waen.SuperVisor.Model.Request_Absence_Response;
 import com.waen.waen.SuperVisor.Model.Routes_Info_Response;
+import com.waen.waen.SuperVisor.Model.SpeedLimit_Response;
 import com.waen.waen.SuperVisor.Model.StartTrip_Response;
 import com.waen.waen.SuperVisor.Model.StudentInFo_Response;
 
@@ -47,8 +51,16 @@ public interface Apiinterface {
     @POST("BusDetails")
     Call<StartTrip_Response> StartTrip(@QueryMap Map<String, String> queryMab);
 
+    @POST("attendanceStudent")
+    Call<Request_Absence_Response> RequestAbsence(@QueryMap Map<String, String> queryMab);
+
+
     @POST("backUpAndReturn")
     Call<StudentInFo_Response> GetStudentinfo(@QueryMap Map<String, String> queryMab);
+
+    @POST("speed")
+    Call<SpeedLimit_Response> LimitSpeed(@QueryMap Map<String, String> queryMab);
+
 
     @POST("infoSchool")
     Call<GetBusesInfo_Response> GetBusesinfo(@QueryMap Map<String, String> queryMab);
@@ -58,6 +70,9 @@ public interface Apiinterface {
 
     @POST("notification")
     Call<Notifications_Response> GetNotifications(@QueryMap Map<String, String> queryMab);
+
+    @POST("getAttendanceStudent")
+    Call<Absence_Response> GetAbsence(@QueryMap Map<String, String> queryMab);
 
 
     @POST("inboxMessageSupervisor")

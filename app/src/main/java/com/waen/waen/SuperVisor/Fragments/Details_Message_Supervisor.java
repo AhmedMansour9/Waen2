@@ -93,15 +93,13 @@ public class Details_Message_Supervisor extends Fragment {
 
         if (Language.isRTL()) {
             // The view has RTL layout
-            adapter.addFragment(new Inbox(),"Inbox");
-            adapter.addFragment(new Sent(), "Sent");
+            adapter.addFragment(new Inbox(),getResources().getString(R.string.inbox));
+            adapter.addFragment(new Sent(),getResources().getString(R.string.sent));
         } else {
             // The view has LTR layout
-            adapter.addFragment(new Sent(),"Sent");
-            adapter.addFragment(new Inbox(), "Inbox");
-
+            adapter.addFragment(new Sent(),getResources().getString(R.string.sent));
+            adapter.addFragment(new Inbox(),getResources().getString(R.string.inbox));
         }
-
         viewPager.setCurrentItem(adapter.getCount() - 1);
         viewPager.setAdapter(adapter);
     }
@@ -130,10 +128,10 @@ public class Details_Message_Supervisor extends Fragment {
             mFragmentTitleList.add(title);
         }
 
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            // TODO Auto-generated method stub
-        }
+//        @Override
+//        public void destroyItem(ViewGroup container, int position, Object object) {
+//            // TODO Auto-generated method stub
+//        }
 
         @Override
         public CharSequence getPageTitle(int position) {

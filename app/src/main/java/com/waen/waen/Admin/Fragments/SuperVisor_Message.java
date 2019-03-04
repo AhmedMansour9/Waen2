@@ -84,12 +84,13 @@ public class SuperVisor_Message extends Fragment implements Messages_Inbox_View 
 
         if (Language.isRTL()) {
             // The view has RTL layout
-            adapter.addFragment(new Inbox_SuperVisor(),"Inbox");
-            adapter.addFragment(new Sent_SuperVisor(), "Sent");
+            adapter.addFragment(new Inbox_SuperVisor(),getResources().getString(R.string.inbox));
+            adapter.addFragment(new Sent_SuperVisor(),getResources().getString(R.string.sent));
         } else {
             // The view has LTR layout
-            adapter.addFragment(new Sent_SuperVisor(),"Sent");
-            adapter.addFragment(new Inbox_SuperVisor(), "Inbox");
+            adapter.addFragment(new Sent_SuperVisor(),getResources().getString(R.string.sent));
+            adapter.addFragment(new Inbox_SuperVisor(),getResources().getString(R.string.inbox));
+
 
         }
 

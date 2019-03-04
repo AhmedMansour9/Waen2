@@ -41,7 +41,7 @@ public class Notification_admin extends Fragment implements GetNotifications_Vie
     FrameLayout Frame_FeedBack;
     GetNotifications_Presenter getNotifications_presenter;
     String Role,UserToken;
-   View view;
+    View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +51,9 @@ public class Notification_admin extends Fragment implements GetNotifications_Vie
         getNotifications_presenter=new GetNotifications_Presenter(getContext(),this);
         Role= SharedPrefManager.getInstance(getContext()).getRole();
         UserToken=SharedPrefManager.getInstance(getContext()).getUserToken();
+        if(Role.equals("parent")){
+            UserToken=SharedPrefManager.getInstance(getContext()).getUserTokenParent();
+        }
         init();
         Recyclview();
         SwipRefresh();

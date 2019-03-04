@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bcbusdetails"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:text="@string/supername"
+        android:id="@+id/supern"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:textColor="#464646"
+        android:id="@+id/T_SuperVisorName"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:layout_below="@+id/supern"
+        android:text="@string/superphone"
+        android:id="@+id/superpho"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:layout_below="@+id/supern"
+        android:textColor="#464646"
+        android:id="@+id/T_SuperVisorPhone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:layout_below="@+id/superpho"
+        android:text="@string/studentname"
+        android:id="@+id/superaddress"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:textColor="#464646"
+        android:layout_below="@+id/superpho"
+        android:id="@+id/T_StudentName"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:text="@string/busname"
+        android:id="@+id/busname"
+        android:layout_below="@+id/superaddress"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:textColor="#464646"
+        android:id="@+id/T_BusName"
+        android:layout_below="@+id/superaddress"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:text="@string/busnumber"
+        android:layout_below="@+id/busname"
+        android:id="@+id/busnumber"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:textColor="#464646"
+        android:id="@+id/T_BusNumber"
+        android:layout_below="@+id/busname"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:text="@string/drivername"
+        android:layout_below="@+id/busnumber"
+        android:id="@+id/Drivername"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:textColor="#464646"
+        android:id="@+id/T_DriverName"
+        android:layout_below="@+id/busnumber"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:textColor="#000"
+        android:text="@string/driverphone"
+        android:layout_below="@+id/Drivername"
+        android:id="@+id/Driverphone"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_toLeftOf="@+id/superpho"
+        android:textColor="#464646"
+        android:id="@+id/T_DriverPhone"
+        android:layout_below="@+id/Drivername"
+
+        />
+</RelativeLayout>

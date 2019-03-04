@@ -11,7 +11,7 @@
             android:title="@string/supervisoranddriver" />
         <item
             android:id="@+id/absence"
-            android:title="Absence" />
+            android:title="@string/absence" />
 
         <item
             android:id="@+id/logout"

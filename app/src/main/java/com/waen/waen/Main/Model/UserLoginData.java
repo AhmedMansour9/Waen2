@@ -54,6 +54,19 @@ public class UserLoginData {
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("userTokenParent")
+    @Expose
+    private String userTokenParent;
+
+
+    public String getUserTokenParent() {
+        return userTokenParent;
+    }
+
+    public void setUserTokenParent(String userTokenParent) {
+        this.userTokenParent = userTokenParent;
+    }
+
 
     public Integer getId() {
         return id;

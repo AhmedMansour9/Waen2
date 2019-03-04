@@ -15,6 +15,7 @@ import com.fourhcode.forhutils.FUtilsValidation;
 import com.onesignal.OSPermissionSubscriptionState;
 import com.onesignal.OneSignal;
 import com.waen.waen.Admin.Activities.Navigation_Admin;
+import com.waen.waen.Parent.FemalyMember;
 import com.waen.waen.Main.Model.LoginInFo;
 import com.waen.waen.Main.Presenter.LoginPresenter;
 import com.waen.waen.Main.Presenter.UpdatePlayer_Presenter;
@@ -24,7 +25,7 @@ import com.waen.waen.NetworikConntection;
 import com.waen.waen.Parent.Navigation_Parent;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
-import com.waen.waen.SuperVisor.Home_Supervisor;
+import com.waen.waen.SuperVisor.NaviationSuperVisor;
 
 public class Login extends AppCompatActivity  implements LoginView, UpdatePlayerid_View {
     LoginPresenter login;
@@ -55,11 +56,14 @@ public class Login extends AppCompatActivity  implements LoginView, UpdatePlayer
                 startActivity(new Intent(Login.this, Navigation_Admin.class));
                 finish();
             }else if ( Role.equals("supervisor")){
-                startActivity(new Intent(Login.this,Home_Supervisor.class));
+                startActivity(new Intent(Login.this, NaviationSuperVisor.class));
                 finish();
             }
             else if ( Role.equals("parent")){
                 startActivity(new Intent(Login.this, Navigation_Parent.class));
+                finish();
+            }else if(Role.equals("family_member")){
+                startActivity(new Intent(Login.this, FemalyMember.class));
                 finish();
             }
 
@@ -102,7 +106,8 @@ public class Login extends AppCompatActivity  implements LoginView, UpdatePlayer
         SharedPrefManager.getInstance(getApplicationContext()).saveUserToken(loginInFo.getUser_token());
         SharedPrefManager.getInstance(getApplicationContext()).saveRole(loginInFo.getRole());
         SharedPrefManager.getInstance(getApplicationContext()).saveId(loginInFo.getId());
-
+        SharedPrefManager.getInstance(getApplicationContext()).saveUserTokenParent(loginInFo.getUsertokenParent());
+        SharedPrefManager.getInstance(getApplicationContext()).saveUserTokenAdmin(loginInFo.getUsertokenadmin());
 //        String email = Usertoken;
 //        OneSignal.setEmail("bassem");
         OSPermissionSubscriptionState status = OneSignal.getPermissionSubscriptionState();
@@ -127,7 +132,7 @@ public class Login extends AppCompatActivity  implements LoginView, UpdatePlayer
          SharedPrefManager.getInstance(getApplicationContext()).saveBusNumberStudent(loginInFo.getBusnumberstudent());
          SharedPrefManager.getInstance(getApplicationContext()).saveDriverName(loginInFo.getDrivername());
          SharedPrefManager.getInstance(getApplicationContext()).saveUserTokenAdmin(loginInFo.getUsertokenadmin());
-         startActivity(new Intent(Login.this,Home_Supervisor.class));
+         startActivity(new Intent(Login.this,NaviationSuperVisor.class));
          finish();
      }
      else if(loginInFo.getRole().equals("admin")){
@@ -135,7 +140,12 @@ public class Login extends AppCompatActivity  implements LoginView, UpdatePlayer
          finish();
 
      }
+     else if(loginInFo.getRole().equals("family_member")){
 
+         startActivity(new Intent(Login.this, FemalyMember.class));
+         finish();
+
+     }
 
     }
 

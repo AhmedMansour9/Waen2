@@ -16,7 +16,8 @@ public class CustomWinfoViewAdmin implements GoogleMap.InfoWindowAdapter {
 
     public CustomWinfoViewAdmin(Context context) {
         this.comtec = context;
-        viewe = LayoutInflater.from(context).inflate(R.layout.windowinfogoogleadmin, null);
+            viewe = LayoutInflater.from(context).inflate(R.layout.windowinfogoogleadmin, null);
+
     }
 
     private void rendowWindowText(Marker marker, View view) {
@@ -41,7 +42,6 @@ public class CustomWinfoViewAdmin implements GoogleMap.InfoWindowAdapter {
 //        img.setImageResource(imageId);
         TextView SuperVisor = view.findViewById(R.id.T_SuperVisor);
         TextView Speed = view.findViewById(R.id.T_speeed);
-
         SuperVisor.setText(infoWindowData.getSupervisorName());
         Speed.setText(infoWindowData.getSpeed()+"");
 

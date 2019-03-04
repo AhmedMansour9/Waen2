@@ -35,7 +35,7 @@ public class Home_Admin extends Fragment {
     public Home_Admin() {
         // Required empty public constructor
     }
-    private TabLayout tabLayout;
+    public static TabLayout tabLayout;
     private ViewPager viewPager;
     View view;
     @Override
@@ -60,8 +60,7 @@ public class Home_Admin extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
-                FragmentManager fm = getFragmentManager(); // or 'getSupportFragmentManager();'
+                FragmentManager fm = getChildFragmentManager(); // or 'getSupportFragmentManager();'
                 int count = fm.getBackStackEntryCount();
                 if(count!=0) {
                     for (int i = 0; i < count; ++i) {
@@ -70,15 +69,11 @@ public class Home_Admin extends Fragment {
                 }
                 viewPager.setCurrentItem(tab.getPosition());
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
     }
@@ -88,10 +83,10 @@ public class Home_Admin extends Fragment {
         View view3 = getLayoutInflater().inflate(R.layout.iconfeedback_admin, null);
         View view4 = getLayoutInflater().inflate(R.layout.iconnotification_admin, null);
         if(Language.isRTL()){
-            tabLayout.getTabAt(0).setCustomView(view4);
-            tabLayout.getTabAt(1).setCustomView(view3);
-            tabLayout.getTabAt(2).setCustomView(view2);
-            tabLayout.getTabAt(3).setCustomView(view1);
+            tabLayout.getTabAt(3).setCustomView(view4);
+            tabLayout.getTabAt(2).setCustomView(view3);
+            tabLayout.getTabAt(1).setCustomView(view2);
+            tabLayout.getTabAt(0).setCustomView(view1);
         }else {
             tabLayout.getTabAt(0).setCustomView(view1);
             tabLayout.getTabAt(1).setCustomView(view2);
@@ -101,19 +96,18 @@ public class Home_Admin extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         if(Language.isRTL()){
-            adapter.addFrag(new Notification_admin(), getResources().getString(R.string.notification));
-            adapter.addFrag(new Feedback_admin(), getResources().getString(R.string.feedback));
-            adapter.addFrag(new Requests_admin(), getResources().getString(R.string.request));
             adapter.addFrag(new Maps_Bus_admin(), getResources().getString(R.string.bus));
+            adapter.addFrag(new Requests_admin(), getResources().getString(R.string.request));
+            adapter.addFrag(new Feedback_admin(), getResources().getString(R.string.feedback));
+            adapter.addFrag(new Notification_admin(), getResources().getString(R.string.notification));
 
         }else {
             adapter.addFrag(new Maps_Bus_admin(), getResources().getString(R.string.bus));
             adapter.addFrag(new Requests_admin(), getResources().getString(R.string.request));
             adapter.addFrag(new Feedback_admin(), getResources().getString(R.string.feedback));
             adapter.addFrag(new Notification_admin(), getResources().getString(R.string.notification));
-
         }
         viewPager.setAdapter(adapter);
     }

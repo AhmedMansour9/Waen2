@@ -68,9 +68,11 @@ public class Inbox extends Fragment implements Messages_Inbox_View,SwipeRefreshL
     }
     public void init(){
         Frame_FeedBack=view.findViewById(R.id.Frame_inbox);
-        User_Token = SharedPrefManager.getInstance(getContext()).getUserToken();
+        User_Token = SharedPrefManager.getInstance(getContext()).getUserTokenParent();
+        if(User_Token==null){
+            User_Token = SharedPrefManager.getInstance(getContext()).getUserToken();
+        }
     }
-
     private void Recyclview() {
         recyclerNotification=view.findViewById(R.id.recycler_inbox);
         recyclerNotification.setHasFixedSize(true);
@@ -125,7 +127,6 @@ public class Inbox extends Fragment implements Messages_Inbox_View,SwipeRefreshL
     public void GetMessagesParent(List<Inbox_details> inbox_details) {
         Collections.reverse(inbox_details);
         super_visors_adapter_admin = new LastMessage_Adapter_admin(inbox_details, getContext());
-//        CARS.setClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerNotification.setLayoutManager(linearLayoutManager);

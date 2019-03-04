@@ -32,7 +32,7 @@ public class Super_Visors_Adapter_Admin extends RecyclerView.Adapter<Super_Visor
             T_SuperVisorAddress=view.findViewById(R.id.T_SuperVisorAddress);
             T_SuperVisorName=view.findViewById(R.id.T_SuperVisorName);
             T_BusName=view.findViewById(R.id.T_BusName);
-            T_BusName=view.findViewById(R.id.T_BusNumber);
+            T_BusNumber=view.findViewById(R.id.T_BusNumber);
 
         }
     }
@@ -56,9 +56,7 @@ public class Super_Visors_Adapter_Admin extends RecyclerView.Adapter<Super_Visor
         holder.T_SuperVisorName.setText(filteredList.get(position).getSupervisorsName());
         holder.T_SuperVisorAddress.setText(filteredList.get(position).getSupervisorsAddress());
         holder.T_BusName.setText(filteredList.get(position).getBusesName());
-        holder.T_BusName.setText(filteredList.get(position).getBusesNumberBus());
-
-
+        holder.T_BusNumber.setText(filteredList.get(position).getBusesNumberBus());
 
 
     }

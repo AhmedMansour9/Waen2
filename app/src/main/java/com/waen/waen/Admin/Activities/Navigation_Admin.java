@@ -19,6 +19,7 @@ import com.waen.waen.Main.Login;
 import com.waen.waen.Parent.Fragments.Absence_Parent;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
+import com.waen.waen.SuperVisor.Home_Supervisor;
 
 public class Navigation_Admin extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,14 +52,25 @@ public class Navigation_Admin extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if(fr instanceof Home_Admin){
-                super.onBackPressed();
-
-            }
-            else
-            {
+            int index = Home_Admin.tabLayout.getSelectedTabPosition();
+            if(fr instanceof SuperVisors_Admin){
                 BackToHome();
+
+            }else if(fr instanceof Absence_Parent){
+                BackToHome();
+
+            } else if (index != 0) {
+                Home_Admin.tabLayout.getTabAt(0).select();
             }
+            else {
+                super.onBackPressed();
+            }
+
+
+//            else
+//            {
+//                BackToHome();
+//            }
         }
     }
 
@@ -77,6 +89,13 @@ public class Navigation_Admin extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.home:
                 mCurrentSelectedPosition = 0;
+                FragmentManager fm = getSupportFragmentManager(); // or 'getSupportFragmentManager();'
+                int count = fm.getBackStackEntryCount();
+                if(count!=0) {
+                    for (int i = 0; i < count; ++i) {
+                        fm.popBackStack();
+                    }
+                }
                 fr = new Home_Admin();
                 break;
             case R.id.supervisor:
@@ -88,7 +107,7 @@ public class Navigation_Admin extends AppCompatActivity
                 fr = new Absence_Parent();
                 break;
             case R.id.logout:
-                mCurrentSelectedPosition = 2;
+                mCurrentSelectedPosition = 3;
 
 //                shareRole.putString("Role",null);
 //                shareRole.commit();
@@ -117,7 +136,7 @@ public class Navigation_Admin extends AppCompatActivity
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.flContent,fr);
+        transaction.replace(R.id.flContentss,fr);
         transaction.commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -126,12 +145,13 @@ public class Navigation_Admin extends AppCompatActivity
 
     private void BackToHome()
     {
+
         fr = new Home_Admin();
         if(fr !=null)
         {
             navigationView.getMenu().getItem(0).setChecked(true);
             FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.flContent,fr,fr.getTag()).commit();
+            manager.beginTransaction().replace(R.id.flContentss,fr).commit();
         }
 
     }

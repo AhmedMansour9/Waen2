@@ -44,7 +44,7 @@ public class Requests_admin extends Fragment implements SwipeRefreshLayout.OnRef
 
         init();
         Recyclview();
-        SwipRefresh();
+//        SwipRefresh();
 
 
         return view;

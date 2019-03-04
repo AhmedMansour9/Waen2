@@ -77,7 +77,7 @@ public class SuperVisors_Admin extends Fragment implements GetBusesMap_View,Swip
                         mSwipeRefreshLayout.setRefreshing(true);
                         getBuses_presenter.GetBuses(User_Token);
                 } else {
-                    Snackbar.make(Frame_FeedBack,getResources().getString(R.string.internet),1500);
+//                    Snackbar.make(Frame_FeedBack,getResources().getString(R.string.internet),1500);
                 }
             }
         });
@@ -103,7 +103,7 @@ public class SuperVisors_Admin extends Fragment implements GetBusesMap_View,Swip
         recycler_SuperVisors.setLayoutManager(linearLayoutManager);
         recycler_SuperVisors.setItemAnimator(new DefaultItemAnimator());
         recycler_SuperVisors.setAdapter(SuperVisor_adapter);
-
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
