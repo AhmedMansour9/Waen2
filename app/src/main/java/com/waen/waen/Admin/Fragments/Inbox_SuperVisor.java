@@ -13,16 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-
 import com.waen.waen.Admin.NetworikConntection;
 import com.waen.waen.Main.Adapter.Inbox_SuperVisor_Admin;
-import com.waen.waen.Main.Adapter.LastMessage_Adapter_admin;
 import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
 import com.waen.waen.SuperVisor.Model.Inbox_details;
 import com.waen.waen.SuperVisor.Presenter.Message_Inbox_Presenter;
 import com.waen.waen.SuperVisor.View.Messages_Inbox_View;
-
 import java.util.Collections;
 import java.util.List;
 

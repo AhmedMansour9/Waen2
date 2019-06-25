@@ -34,10 +34,7 @@ public class Choose_BackUp_Return extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         view= inflater.inflate(R.layout.fragment_choose__back_up__return, container, false);
-
          init();
          StartBackUp();
          StartReturn();
@@ -75,16 +72,19 @@ public class Choose_BackUp_Return extends Fragment {
         T_BusNumberStuident=view.findViewById(R.id.T_BusNumberStuident);
         T_DriverName=view.findViewById(R.id.T_DriverName);
         logoout=view.findViewById(R.id.logoout);
+
         String Bus_Name=SharedPrefManager.getInstance(getActivity()).getBuseName();
        String BusNumber =SharedPrefManager.getInstance(getActivity()).getBusNumber();
        String Capacity =SharedPrefManager.getInstance(getActivity()).getBuscapcity();
        String BusNumberStuident= SharedPrefManager.getInstance(getActivity()).getBusNumberSteudent();
        String DriverName=SharedPrefManager.getInstance(getActivity()).getDriverName();
+
         T_BusName.setText(Bus_Name);
         T_BusNumber.setText(BusNumber);
         T_Capacity.setText(Capacity);
         T_BusNumberStuident.setText(BusNumberStuident);
         T_DriverName.setText(DriverName);
+
     }
     public void StartBackUp(){
         backup.setOnClickListener(new View.OnClickListener() {

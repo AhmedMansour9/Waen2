@@ -25,30 +25,25 @@
     <string name="retur">Return</string>
     <string name="insertemail">Insert Your Email</string>
     <string name="insertpassword">Insert Your Password</string>
-    <string name="backuptrip">Back up</string>
+    <string name="backuptrip">Going up</string>
     <string name="returntrip">Return</string>
-
     <string name="invalidemail">Invalid Email Or password</string>
     <string name="busnumber">Bus Number</string>
     <string name="supervisorname">SuperVisor</string>
     <string name="busname">Bus Name</string>
     <string name="speed">Speed</string>
-
     <string name="supername">SuperVisor Name</string>
     <string name="superphone">SuperVisor Phone </string>
     <string name="superaddress">SuperVisor Address </string>
-
     <string name="sendmsg">Send Message</string>
-
     <string name="title">Title</string>
     <string name="message">Message</string>
     <string name="requestabsence">Request Absence Sent Success</string>
-    <string name="studentname">Student Name</string>
+    <string name="studentname">Student In Home</string>
     <string name="drivername">Driver Name</string>
     <string name="driverphone">Driver Phone</string>
     <string name="Capacity">Capacity</string>
     <string name="numberstudent">Number Student</string>
-
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="studentinbus">Student in Bus</string>

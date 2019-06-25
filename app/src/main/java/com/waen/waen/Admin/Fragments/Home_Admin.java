@@ -52,7 +52,6 @@ public class Home_Admin extends Fragment {
         tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         RefreshTabs();
         setupTabIcons();
-
         return view;
     }
 

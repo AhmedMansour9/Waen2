@@ -275,13 +275,8 @@ public class Maps_Bus_admin extends Fragment implements Details_Bus,OnMapReadyCa
                             .title(e.getBusName())
                             .snippet(e.getBusNumber())
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.iconbus));
-//
-//
                     BusDetail info = new BusDetail();
-
                     info.setBusName(e.getBusName());
-
-
                     info.setBusNumber(e.getBusNumber());
                     info.setSpeed(e.getSpeed());
                     info.setSupervisorName(e.getSupervisorName());

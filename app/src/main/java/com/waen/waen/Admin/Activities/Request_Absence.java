@@ -64,7 +64,8 @@ public class Request_Absence extends AppCompatActivity implements RequestAbsence
         E_Title=findViewById(R.id.E_Title);
         E_Message=findViewById(R.id.E_Message);
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-        User_token = SharedPrefManager.getInstance(this).getUserToken();
+        User_token = SharedPrefManager.getInstance(this).getUserTokenParent();
+
         buses_students_presnter=new Buses_Students_Presnter(this,this);
         buses_students_presnter.GetBuses(User_token);
         Date_From.setText(date);

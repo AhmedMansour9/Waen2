@@ -31,6 +31,7 @@ import com.waen.waen.R;
 import com.waen.waen.SharedPrefManager;
 import com.waen.waen.SuperVisor.Adapter.Notification_Adapter_supervisor;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -129,6 +130,7 @@ public class Absence_Parent extends Fragment implements GetAbsences_View,SwipeRe
 
     @Override
     public void ListAbseces(List<Absences_Details> list) {
+        Collections.reverse(list);
         Notification_adapter = new Absence_Adapter(list, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

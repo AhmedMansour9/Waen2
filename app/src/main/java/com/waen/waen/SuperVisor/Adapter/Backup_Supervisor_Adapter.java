@@ -71,7 +71,6 @@ public class Backup_Supervisor_Adapter extends RecyclerView.Adapter<Backup_Super
            @Override
            public void onClick(View view) {
                student_id.Student_Id(filteredList.get(position).getStudentId());
-
            }
        });
        holder.Btn_inschool.setOnClickListener(new View.OnClickListener() {

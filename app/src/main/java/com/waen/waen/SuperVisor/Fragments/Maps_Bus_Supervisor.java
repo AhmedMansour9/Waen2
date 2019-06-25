@@ -87,7 +87,9 @@ import retrofit2.http.QueryMap;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,TripKey,RouteInFo_View, OnMapReadyCallback, com.google.android.gms.location.LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,TripKey,RouteInFo_View,
+        OnMapReadyCallback, com.google.android.gms.location.LocationListener,
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
 
     public Maps_Bus_Supervisor() {
@@ -302,12 +304,12 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
 
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-          if(movie) {
-              CameraPosition currentPlace = new CameraPosition.Builder()
-                      .target(new LatLng(location.getLatitude(), location.getLongitude()))
-                      .bearing(240).tilt(30).zoom(18f).build();
-              googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(currentPlace));
-          }
+//          if(movie) {
+//              CameraPosition currentPlace = new CameraPosition.Builder()
+//                      .target(new LatLng(location.getLatitude(), location.getLongitude()))
+//                      .bearing(240).tilt(30).zoom(18f).build();
+//              googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(currentPlace));
+//          }
 
         key=SharedPrefManager.getInstance(getContext()).getKey();
         if(key!=null){
@@ -361,7 +363,6 @@ public class Maps_Bus_Supervisor extends Fragment implements RoutingListener,Tri
          EndLat =routes_details.getRoutesLatStartPint();
          EndLon = routes_details.getRoutesLngStartPint();
      }
-
 
     }
 

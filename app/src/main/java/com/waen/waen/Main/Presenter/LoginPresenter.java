@@ -35,8 +35,6 @@ public class LoginPresenter {
         queryMap.put("api_token", "100");
 
         Apiinterface apiInterface = ApiCLint.getClient().create(Apiinterface.class);
-
-
         Call<UserLoginResponse> call = apiInterface.Login(queryMap);
         call.enqueue(new Callback<UserLoginResponse>() {
             @Override
